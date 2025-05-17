@@ -1,8 +1,6 @@
-// has everything related to cart page
 const Page = require('./basePage')
 const { By } = require('selenium-webdriver')
 
-// move all the clicks and element locators here
 const cartQuantity = By.css('.order-qty > .o-value')
 const cartRowItems = By.css('.tbl-row > .subtotal')
 const cartSum = By.css('.order-total > .o-value')
@@ -16,7 +14,7 @@ module.exports = class Cartpage extends Page  {
     }
 
     async verifyCartSumIsCorrect() {
-        const cartItems = await super.getElements(cartRowItems)
+        const cartItems = await super.findElements(cartRowItems)
 
         let cartItemsSum = 0
         for(let item of cartItems) {
@@ -31,9 +29,8 @@ module.exports = class Cartpage extends Page  {
     }
 
     async removeItemFromCart(number) {
-        const cartItems = await super.getElements(cartItemRow)
-        const cartElement = await super.getElementFromInsideElement(cartItems[number-1], cartRemoveBtn)
+        const cartItems = await super.findElements(cartItemRow)
+        const cartElement = await super.findChildElement(cartItems[number-1], cartRemoveBtn)
         await super.click(cartElement)
     }
-
 }

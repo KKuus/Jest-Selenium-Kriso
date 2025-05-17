@@ -3,8 +3,6 @@ const chrome = require('selenium-webdriver/chrome');
 let Homepage = require('../pageobjects/homePage');
 let Cartpage = require('../pageobjects/homePage');
 
-require('chromedriver')
-
 let driver; 
 const TIMEOUT = 10000;
 let cartSumOfOne = 0; 
